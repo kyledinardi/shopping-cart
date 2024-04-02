@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Ananda Black';
+  src: url(../fonts/AnandaBlackPersonalUseRegular-rg9Rx.ttf);
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  display: grid;
+  grid-template-rows: max-content 1fr;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+}

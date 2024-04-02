@@ -1,5 +1,11 @@
+.navWrapper {
+  padding: 10px;
+  background-color: #0e1c36;
+}
+
 .nav {
-  margin: 10px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .logo {
@@ -7,7 +13,7 @@
   height: 40px;
   font-family: 'Ananda Black', sans-serif;
   font-size: 1.5rem;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -30,6 +36,7 @@
   padding: 0;
   font-size: 1rem;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #afcbff;
 }
 
 .nav svg {

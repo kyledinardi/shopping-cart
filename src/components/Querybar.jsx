@@ -1,6 +1,15 @@
+import PropTypes from 'prop-types';
 import styles from '../style/Querybar.module.css';
 
-function Querybar() {
+function Querybar({ onSelectSort, onSearch }) {
+  function handleSearch(e) {
+    onSearch(e.target.value);
+  }
+
+  function handleSort(e) {
+    onSelectSort(e.target.value);
+  }
+
   return (
     <div className={styles.querybar}>
       <div className={styles.search}>
@@ -10,7 +19,12 @@ function Querybar() {
             <path d='M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z' />
           </svg>
         </label>
-        <input type='search' name='search' id='search' />
+        <input
+          type='search'
+          name='search'
+          id='search'
+          onChange={handleSearch}
+        />
       </div>
       <div className={styles.filter}>
         <p>Filter: </p>
@@ -23,14 +37,19 @@ function Querybar() {
       </div>
       <div className={styles.sort}>
         <label htmlFor='sort'>Sort by: </label>
-        <select name='sort' id='sort'>
+        <select name='sort' id='sort' onChange={handleSort}>
           <option value='rating'>Highest Rated</option>
           <option value='priceAsc'>Price (Low to High)</option>
-          <option value='priceDec'>Price (High to Low)</option>
+          <option value='priceDes'>Price (High to Low)</option>
         </select>
       </div>
     </div>
   );
 }
+
+Querybar.propTypes = {
+  onSelectSort: PropTypes.func,
+  onSearch: PropTypes.func,
+};
 
 export default Querybar;

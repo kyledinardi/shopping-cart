@@ -12,13 +12,13 @@ function Card({ product }) {
         <Stars rating={product.rating.rate} />
         <p className={styles.ratingCount}>({product.rating.count})</p>
       </div>
-      <p className={styles.price}>${product.price}</p>
+      <p className={styles.price}>${product.price.toFixed(2)}</p>
     </div>
   );
 }
 
 Card.propTypes = {
   product: PropTypes.object,
-}
+};
 
-export default Card
+export default Card;

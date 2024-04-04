@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Card from './Card';
+import Querybar from './Querybar';
 import styles from '../style/Shop.module.css';
 
 export default function Shop() {
@@ -13,6 +14,7 @@ export default function Shop() {
 
   return (
     <div className={styles.shop}>
+      <Querybar />
       <div className={styles.cardContainer}>
         {products ? (
           products.map((product) => <Card product={product} key={product.id} />)

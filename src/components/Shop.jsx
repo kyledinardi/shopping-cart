@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react';
-import Card from './Card';
+import FilterDialog from './FilterDialog';
 import Querybar from './Querybar';
+import Card from './Card';
 import styles from '../style/Shop.module.css';
 
 export default function Shop() {
   const [products, setProducts] = useState(null);
-  const [filteredProducts, setFilteredProducts] = useState(null);
-  const [search, setSearch] = useState(null);
+  const [filters, setFilters] = useState({
+    search: '',
+    category: 'all',
+    rating: 0,
+    minPrice: 0,
+    maxPrice: 10000,
+  });
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -17,19 +23,8 @@ export default function Shop() {
         });
 
         setProducts(sorted);
-        setFilteredProducts(sorted);
-        setSearch(sorted);
       });
   }, []);
-
-  function handleSearch(query) {
-    const newFiltered = [...filteredProducts].filter((product) => {
-      const productName = product.title.toLowerCase();
-      return productName.includes(query.toLowerCase());
-    });
-
-    setSearch(newFiltered);
-  }
 
   function handleSort(sortType) {
     const newProducts = [...products];
@@ -53,12 +48,44 @@ export default function Shop() {
     setProducts(newProducts);
   }
 
+  function handleSearch(query) {
+    setFilters({ ...filters, search: query.toLowerCase() });
+  }
+
+  function handleFilters(newFilters) {
+    setFilters({
+      ...filters,
+      category: newFilters.category,
+      rating: newFilters.rating,
+      minPrice: newFilters.minPrice,
+      maxPrice: newFilters.maxPrice,
+    });
+    console.log(newFilters);
+  }
+
+  function filterProducts() {
+    const filteredProducts = products.filter((product) => {
+      const isInSearch = product.title.toLowerCase().includes(filters.search);
+      const isInCategory =
+        product.category === filters.category || filters.category === 'all';
+      const isRating = product.rating.rate >= filters.rating;
+      const isMinPrice = product.price >= filters.minPrice;
+      const isMaxPrice = product.price <= filters.maxPrice;
+      return isInSearch && isInCategory && isRating && isMinPrice && isMaxPrice;
+    });
+
+    return filteredProducts;
+  }
+
   return (
     <div className={styles.shop}>
+      <FilterDialog handleFilters={handleFilters} />
       <Querybar onSearch={handleSearch} onSelectSort={handleSort} />
       <div className={styles.cardContainer}>
         {products ? (
-          search.map((product) => <Card product={product} key={product.id} />)
+          filterProducts().map((product) => (
+            <Card product={product} key={product.id} />
+          ))
         ) : (
           <h1 className={styles.loading}>Loading...</h1>
         )}

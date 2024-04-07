@@ -5,7 +5,7 @@ import styles from '../style/Card.module.css';
 function Card({ product, addToCart }) {
   function handleSubmit(e) {
     e.preventDefault();
-    addToCart(document.getElementById('quantity').value);
+    addToCart(document.getElementById(`${product.id}-quantity`).value);
     e.target.reset();
   }
 
@@ -24,7 +24,7 @@ function Card({ product, addToCart }) {
         <input
           type='number'
           name='quantity'
-          id='quantity'
+          id={`${product.id}-quantity`}
           className={styles.quantityInput}
           defaultValue={0}
           min={0}

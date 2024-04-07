@@ -3,14 +3,15 @@
   background-color: #0e1c36;
 }
 
-.nav {
+nav {
   max-width: 1200px;
   margin: auto;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
 }
 
 .logo {
-  position: absolute;
-  height: 40px;
   font-family: 'Ananda Black', sans-serif;
   font-size: 1.5rem;
   color: white;
@@ -18,27 +19,25 @@
 }
 
 .nav ul {
-  display: grid;
-  grid-template-columns: repeat(3, 60px);
-  justify-content: flex-end;
-  gap: 10px;
   list-style-type: none;
-  padding: 0;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 10px;
   margin: 0;
+  padding: 0;
+}
+
+nav li {
+  height: 40px;
+  width: 60px;
 }
 
 .nav button {
+  background-color: #afcbff;
   border: 1px black solid;
   border-radius: 5px;
-  cursor: pointer;
-  width: 60px;
   height: 40px;
-  padding: 0;
-  font-size: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #afcbff;
-}
-
-.nav svg {
-  height: 30px;
+  width: 60px;
+  cursor: pointer;
 }

@@ -1,20 +1,19 @@
 .shop {
-  max-width: 1200px;
-  margin: auto;
+  display: grid;
+  justify-items: center;
 }
 
 .cardContainer {
-  margin: 20px;
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  width: min(100vw, 1200px);
 }
 
 .loading {
-  background-color: #afcbff;
-  margin: auto;
-  font-size: 5rem;
-  margin-top: 50px;
-  padding: 20px;
-  border-radius: 20px;
+  background-color: #AFCBFF;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  margin: 20px auto;
+  width: max-content;
 }

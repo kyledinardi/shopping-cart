@@ -1,34 +1,53 @@
 .card {
   background-color: #afcbff;
+  margin: 20px;
   padding: 20px;
   border-radius: 20px;
   display: grid;
   justify-items: center;
-  text-align: center;
+  align-items: center;
+  gap: 10px;
+
 }
 
 .card img {
   max-height: 200px;
-  max-width: 232px;
+  max-width: 200px;
   border-radius: 10px;
 }
 
 .card h2 {
   font-size: 1.2rem;
+  text-align: center;
+  margin: 0;
+}
+
+.card p {
+  margin: 0;
 }
 
 .rating {
   display: grid;
   grid-auto-flow: column;
-  justify-content: start;
   align-items: center;
-  gap: 10px;
-}
-
-.rating svg {
-  height: 24px;
+  gap: 5px;
 }
 
 .ratingCount {
-  color: #444
+  color: #444;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.purchase {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 5px;
+}
+
+.quantityInput {
+  width: 30px;
 }

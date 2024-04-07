@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 20px;
-  text-align: end;
+  text-align: center;
 }
 
 .priceRange {
@@ -20,4 +20,12 @@
   grid-template-columns: max-content 1fr;
   display: grid;
   align-items: center;
+}
+
+.buttons {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: center;
+  gap: 30px;
 }

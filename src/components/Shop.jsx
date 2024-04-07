@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
 import FilterDialog from './FilterDialog';
 import Querybar from './Querybar';
 import Card from './Card';
 import styles from '../style/Shop.module.css';
 
 export default function Shop() {
+  const addToCart = useOutletContext();
   const [products, setProducts] = useState(null);
   const [filters, setFilters] = useState({
     search: '',
@@ -60,7 +62,6 @@ export default function Shop() {
       minPrice: newFilters.minPrice,
       maxPrice: newFilters.maxPrice,
     });
-    console.log(newFilters);
   }
 
   function filterProducts() {
@@ -84,7 +85,11 @@ export default function Shop() {
       <div className={styles.cardContainer}>
         {products ? (
           filterProducts().map((product) => (
-            <Card product={product} key={product.id} />
+            <Card
+              product={product}
+              addToCart={(q) => addToCart(q)}
+              key={product.id}
+            />
           ))
         ) : (
           <h1 className={styles.loading}>Loading...</h1>

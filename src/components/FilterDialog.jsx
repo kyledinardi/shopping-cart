@@ -19,9 +19,26 @@ function FilterDialog({ handleFilters }) {
     handleFilters(newFilters);
   }
 
+  function handleReset() {
+    const newFilters = {
+      category: 'all',
+      rating: 0,
+      minPrice: 0,
+      maxPrice: 10000,
+    };
+
+    handleFilters(newFilters);
+    document.querySelector('dialog').close();
+  }
+
   return (
     <dialog className={styles.dialog}>
-      <form className={styles.form} method='dialog' onSubmit={handleSubmit}>
+      <form
+        className={styles.form}
+        method='dialog'
+        onSubmit={handleSubmit}
+        onReset={handleReset}
+      >
         <div className={styles.fields}>
           <label htmlFor='category'>Category</label>
           <select name='category' id='category'>
@@ -56,7 +73,10 @@ function FilterDialog({ handleFilters }) {
             <input type='number' name='maxPrice' id='maxPrice' min={0} />
           </div>
         </div>
-        <button type='submit'>Filter</button>
+        <div className={styles.buttons}>
+          <button type='submit'>Filter</button>
+          <button type='reset'>Remove All Filters</button>
+        </div>
       </form>
     </dialog>
   );

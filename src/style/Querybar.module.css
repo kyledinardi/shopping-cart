@@ -1,17 +1,12 @@
 .querybar {
   background-color: #afcbff;
   display: grid;
-  grid-auto-flow: column;
+  grid-auto-flow: row;
   align-items: center;
-  justify-content: center;
-  padding: 5px;
-  border-radius: 5px;
-  gap: 30px;
-}
-
-.querybar svg {
-  height: 24px;
-  margin-top: 5px;
+  justify-items: center;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .search,
@@ -22,8 +17,21 @@
   gap: 5px;
 }
 
+.querybar svg {
+  margin-top: 5px;
+}
+
 .filter button {
   background-color: #afcbff;
   border: none;
   cursor: pointer;
+}
+
+@media (min-width: 600px) {
+  .querybar {
+    grid-auto-flow: column;
+    justify-content: center;
+    gap: 20px;
+    height: 60px;
+  }
 }

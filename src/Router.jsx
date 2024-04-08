@@ -1,7 +1,7 @@
 import App from './App';
 import Home from './components/Home';
 import Shop from './components/Shop';
-// import ErrorPage from './ErrorPage';
+import ErrorPage from './components/ErrorPage';
 
 const routes = [
   {
@@ -11,7 +11,7 @@ const routes = [
       { index: true, element: <Home /> },
       { path: 'shop', element: <Shop /> },
     ],
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
   },
 ];
 

@@ -7,6 +7,7 @@ import styles from '../style/Shop.module.css';
 
 export default function Shop() {
   const addToCart = useOutletContext();
+  const [error, setError] = useState(null);
   const [products, setProducts] = useState(null);
   const [filters, setFilters] = useState({
     search: '',
@@ -17,15 +18,24 @@ export default function Shop() {
   });
 
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then((res) => res.json())
+    setError(null);
+
+    fetch('https://fakestoreapi.com/producs', { mode: 'cors' })
+      .then((res) => {
+        if (res.status >= 400) {
+          throw new Error(`${res.status} error`);
+        }
+
+        return res.json();
+      })
       .then((json) => {
         const sorted = json.sort((a, b) => {
           return a.rating.rate > b.rating.rate ? -1 : 1;
         });
 
         setProducts(sorted);
-      });
+      })
+      .catch((err) => setError(err));
   }, []);
 
   function handleSort(sortType) {
@@ -91,8 +101,10 @@ export default function Shop() {
               key={product.id}
             />
           ))
-        ) : (
+        ) : !error ? (
           <h1 className={styles.loading}>Loading...</h1>
+        ) : (
+          <h1 className={styles.loading}>{error.message}</h1>
         )}
       </div>
     </div>

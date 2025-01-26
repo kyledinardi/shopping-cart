@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 function Stars({ rating }) {
   const starArray = [];
 
-  for (let i = 0; i < Math.floor(rating); i++) {
+  for (let i = 0; i < Math.floor(rating); i += 1) {
     starArray.push(
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
         <title>star</title>
@@ -30,7 +30,7 @@ function Stars({ rating }) {
     );
   }
 
-  for (let i = starArray.length; i < 5; i++) {
+  for (let i = starArray.length; i < 5; i += 1) {
     starArray.push(
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
         <title>star-outline</title>

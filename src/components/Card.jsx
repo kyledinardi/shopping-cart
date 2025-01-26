@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Stars from './Stars';
+import Stars from './Stars.jsx';
 import styles from '../style/Card.module.css';
 
 function Card({ product, addToCart }) {

@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styles from '../style/ErrorPage.module.css';
-import Navbar from './Navbar';
 
 export default function ErrorPage() {
   return (

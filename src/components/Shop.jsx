@@ -9,6 +9,7 @@ export default function Shop() {
   const addToCart = useOutletContext();
   const [error, setError] = useState(null);
   const [products, setProducts] = useState(null);
+
   const [filters, setFilters] = useState({
     search: '',
     category: 'all',
@@ -46,9 +47,11 @@ export default function Shop() {
     if (sortType === 'rating') {
       newProducts.sort((a, b) => (a.rating.rate > b.rating.rate ? -1 : 1));
     }
+
     if (sortType === 'priceAsc') {
       newProducts.sort((a, b) => (a.price > b.price ? 1 : -1));
     }
+
     if (sortType === 'priceDes') {
       newProducts.sort((a, b) => (a.price > b.price ? -1 : 1));
     }
@@ -73,11 +76,13 @@ export default function Shop() {
   function filterProducts() {
     const filteredProducts = products.filter((product) => {
       const isInSearch = product.title.toLowerCase().includes(filters.search);
-      const isInCategory =
-        product.category === filters.category || filters.category === 'all';
       const isRating = product.rating.rate >= filters.rating;
       const isMinPrice = product.price >= filters.minPrice;
       const isMaxPrice = product.price <= filters.maxPrice;
+      
+      const isInCategory =
+        product.category === filters.category || filters.category === 'all';
+        
       return isInSearch && isInCategory && isRating && isMinPrice && isMaxPrice;
     });
 

@@ -12,6 +12,7 @@ function FilterDialog({ handleFilters }) {
     if (newFilters.minPrice === '') {
       newFilters.minPrice = 0;
     }
+    
     if (newFilters.maxPrice === '') {
       newFilters.maxPrice = 10000;
     }

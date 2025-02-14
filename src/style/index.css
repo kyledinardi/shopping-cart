@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'Ananda Black';
-  src: url(../fonts/AnandaBlackPersonalUseRegular-rg9Rx.ttf);
+  src: url('../assets/AnandaBlackPersonalUseRegular-rg9Rx.ttf');
 }
 
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url(/clark-street-mercantile-P3pI6xzovu0-unsplash.webp);
+  background-image: url('../assets/clark-street-mercantile-P3pI6xzovu0-unsplash.webp');
   background-position: center;
   background-size: cover;
   background-attachment: fixed;

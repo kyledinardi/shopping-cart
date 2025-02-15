@@ -22,16 +22,17 @@ export default function Shop() {
     setError(null);
 
     fetch('https://fakestoreapi.com/products', { mode: 'cors' })
-      .then((res) => {
-        if (res.status >= 400) {
-          throw new Error(`${res.status} error`);
+      .then((responseStream) => {
+        if (responseStream.status >= 400) {
+          throw new Error(`${responseStream.status} error`);
         }
 
-        return res.json();
+        return responseStream.json();
       })
 
-      .then((json) => {
-        const sorted = json.sort((a, b) =>
+      .then((response) => {
+        console.log(response);
+        const sorted = response.sort((a, b) =>
           a.rating.rate > b.rating.rate ? -1 : 1,
         );
 
@@ -79,10 +80,10 @@ export default function Shop() {
       const isRating = product.rating.rate >= filters.rating;
       const isMinPrice = product.price >= filters.minPrice;
       const isMaxPrice = product.price <= filters.maxPrice;
-      
+
       const isInCategory =
         product.category === filters.category || filters.category === 'all';
-        
+
       return isInSearch && isInCategory && isRating && isMinPrice && isMaxPrice;
     });
 
@@ -90,21 +91,21 @@ export default function Shop() {
   }
 
   function renderProducts() {
-    if (products) {
-      return filterProducts().map((product) => (
-        <Card
-          product={product}
-          addToCart={(q) => addToCart(q)}
-          key={product.id}
-        />
-      ));
+    if (error) {
+      return <h1 className={styles.loading}>{error.message}</h1>;
     }
 
-    if (!error) {
+    if (!products) {
       return <h1 className={styles.loading}>Loading...</h1>;
     }
 
-    return <h1 className={styles.loading}>{error.message}</h1>;
+    return filterProducts().map((product) => (
+      <Card
+        product={product}
+        addToCart={(q) => addToCart(q)}
+        key={product.id}
+      />
+    ));
   }
 
   return (

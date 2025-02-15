@@ -9,6 +9,11 @@
   gap: 10px;
 }
 
+.card a {
+  text-decoration: none;
+  color: black;
+}
+
 .card img {
   max-height: 200px;
   max-width: 200px;

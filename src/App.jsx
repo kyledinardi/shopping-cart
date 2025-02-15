@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar.jsx';
 
 function App() {
   const [quantity, setQuantity] = useState(0);

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Stars from './Stars.jsx';
 import styles from '../style/Card.module.css';
 
@@ -11,8 +12,12 @@ function Card({ product, addToCart }) {
 
   return (
     <div className={styles.card}>
-      <img src={product.image} alt={product.title} />
-      <h2>{product.title}</h2>
+      <Link to={`/products/${product.id}`}>
+        <img src={product.image} alt={product.title} />
+      </Link>
+      <h2>
+        <Link to={`/products/${product.id}`}>{product.title}</Link>
+      </h2>
       <div className={styles.rating}>
         <p>{product.rating.rate}</p>
         <Stars rating={product.rating.rate} />

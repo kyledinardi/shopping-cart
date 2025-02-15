@@ -45,9 +45,3 @@
   font-size: 1.5rem;
   font-weight: bold;
 }
-
-.purchase {
-  display: grid;
-  grid-auto-flow: column;
-  gap: 5px;
-}

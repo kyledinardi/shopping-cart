@@ -3,6 +3,10 @@
   src: url('../assets/AnandaBlackPersonalUseRegular-rg9Rx.ttf');
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;

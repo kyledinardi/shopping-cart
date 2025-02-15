@@ -6,6 +6,7 @@ import styles from '../style/ProductPage.module.css';
 function ProductPage() {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
+  const [quantity, setQuantity] = useState(1);
   const addToCart = useOutletContext();
   const productId = Number(useParams().productId);
 
@@ -33,6 +34,14 @@ function ProductPage() {
     e.target.reset();
   }
 
+  function handleQuantityChange(e) {
+    const newQuantity = Number(e.target.value);
+
+    if (!Number.isNaN(newQuantity) && newQuantity >= 1 && newQuantity <= 99) {
+      setQuantity(newQuantity);
+    }
+  }
+
   if (error) {
     return <h1>{error.message}</h1>;
   }
@@ -55,17 +64,33 @@ function ProductPage() {
           <p className={styles.price}>${product.price.toFixed(2)}</p>
           <p>{product.description}</p>
           <form className={styles.purchase} onSubmit={handleSubmit}>
-            <label htmlFor='quantity'>Quantity:</label>
-            <input
-              type='number'
-              name='quantity'
-              id={`${product.id}-quantity`}
-              className={styles.quantityInput}
-              defaultValue={0}
-              min={0}
-              max={99}
-            />
-            <button>Add to Cart</button>
+            <label htmlFor={`${product.id}-quantity`}>Quantity:</label>
+            <div className={styles.quantity}>
+              <button
+                type='button'
+                disabled={quantity <= 1}
+                onClick={() => setQuantity(quantity - 1)}
+              >
+                -
+              </button>
+              <input
+                type='tel'
+                name='quantity'
+                id={`${product.id}-quantity`}
+                className={styles.quantityInput}
+                value={quantity}
+                onChange={handleQuantityChange}
+                maxLength={2}
+              />
+              <button
+                type='button'
+                disabled={quantity >= 99}
+                onClick={() => setQuantity(quantity + 1)}
+              >
+                +
+              </button>
+            </div>
+            <button className={styles.addToCartButton}>Add to Cart</button>
           </form>
         </div>
       </div>

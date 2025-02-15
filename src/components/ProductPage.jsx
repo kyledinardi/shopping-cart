@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import Stars from './Stars.jsx';
 import styles from '../style/ProductPage.module.css';
 
 function ProductPage() {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
+  const addToCart = useOutletContext();
   const productId = Number(useParams().productId);
 
   useEffect(() => {
@@ -25,6 +26,12 @@ function ProductPage() {
         .catch((err) => setError(err));
     }
   }, [productId]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    addToCart(document.getElementById(`${product.id}-quantity`).value);
+    e.target.reset();
+  }
 
   if (error) {
     return <h1>{error.message}</h1>;
@@ -47,6 +54,19 @@ function ProductPage() {
           </div>
           <p className={styles.price}>${product.price.toFixed(2)}</p>
           <p>{product.description}</p>
+          <form className={styles.purchase} onSubmit={handleSubmit}>
+            <label htmlFor='quantity'>Quantity:</label>
+            <input
+              type='number'
+              name='quantity'
+              id={`${product.id}-quantity`}
+              className={styles.quantityInput}
+              defaultValue={0}
+              min={0}
+              max={99}
+            />
+            <button>Add to Cart</button>
+          </form>
         </div>
       </div>
     </div>

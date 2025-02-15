@@ -51,7 +51,3 @@
   grid-auto-flow: column;
   gap: 5px;
 }
-
-.quantityInput {
-  width: 30px;
-}

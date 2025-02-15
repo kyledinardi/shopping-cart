@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useOutletContext } from 'react-router-dom';
 import FilterDialog from './FilterDialog.jsx';
 import Querybar from './Querybar.jsx';
 import Card from './Card.jsx';
 import styles from '../style/Shop.module.css';
 
 export default function Shop() {
-  const addToCart = useOutletContext();
   const [error, setError] = useState(null);
   const [products, setProducts] = useState(null);
 
@@ -31,7 +29,6 @@ export default function Shop() {
       })
 
       .then((response) => {
-        console.log(response);
         const sorted = response.sort((a, b) =>
           a.rating.rate > b.rating.rate ? -1 : 1,
         );
@@ -100,11 +97,7 @@ export default function Shop() {
     }
 
     return filterProducts().map((product) => (
-      <Card
-        product={product}
-        addToCart={(q) => addToCart(q)}
-        key={product.id}
-      />
+      <Card product={product} key={product.id} />
     ));
   }
 

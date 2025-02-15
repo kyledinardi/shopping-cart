@@ -3,13 +3,7 @@ import { Link } from 'react-router-dom';
 import Stars from './Stars.jsx';
 import styles from '../style/Card.module.css';
 
-function Card({ product, addToCart }) {
-  function handleSubmit(e) {
-    e.preventDefault();
-    addToCart(document.getElementById(`${product.id}-quantity`).value);
-    e.target.reset();
-  }
-
+function Card({ product }) {
   return (
     <div className={styles.card}>
       <Link to={`/products/${product.id}`}>
@@ -24,19 +18,6 @@ function Card({ product, addToCart }) {
         <p className={styles.ratingCount}>({product.rating.count})</p>
       </div>
       <p className={styles.price}>${product.price.toFixed(2)}</p>
-      <form className={styles.purchase} onSubmit={handleSubmit}>
-        <label htmlFor='quantity'>Quantity:</label>
-        <input
-          type='number'
-          name='quantity'
-          id={`${product.id}-quantity`}
-          className={styles.quantityInput}
-          defaultValue={0}
-          min={0}
-          max={99}
-        />
-        <button type='submit'>Add to Cart</button>
-      </form>
     </div>
   );
 }

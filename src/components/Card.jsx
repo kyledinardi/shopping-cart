@@ -6,18 +6,24 @@ import styles from '../style/Card.module.css';
 function Card({ product }) {
   return (
     <div className={styles.card}>
-      <Link to={`/products/${product.id}`}>
-        <img src={product.image} alt={product.title} />
-      </Link>
-      <h2>
-        <Link to={`/products/${product.id}`}>{product.title}</Link>
-      </h2>
-      <div className={styles.rating}>
-        <p>{product.rating.rate}</p>
-        <Stars rating={product.rating.rate} />
-        <p className={styles.ratingCount}>({product.rating.count})</p>
+      <div className={styles.imageContainer}>
+        <Link to={`/products/${product.id}`}>
+          <img src={product.image} alt={product.title} />
+        </Link>
       </div>
-      <p className={styles.price}>${product.price.toFixed(2)}</p>
+      <div className={styles.info}>
+        <h2>
+          <Link to={`/products/${product.id}`} className={styles.productTitle}>
+            {product.title}
+          </Link>
+        </h2>
+        <div className={styles.rating}>
+          <p>{product.rating.rate}</p>
+          <Stars rating={product.rating.rate} />
+          <p className={styles.ratingCount}>({product.rating.count})</p>
+        </div>
+        <p className={styles.price}>${product.price.toFixed(2)}</p>
+      </div>
     </div>
   );
 }

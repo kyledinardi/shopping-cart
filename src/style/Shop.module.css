@@ -5,7 +5,9 @@
 
 .cardContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4,275px);
+  padding: 20px;
+  gap: 20px;
   width: min(100vw, 1200px);
   background-color: #afcbff;
 }

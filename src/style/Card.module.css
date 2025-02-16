@@ -1,12 +1,21 @@
 .card {
   background-color: white;
-  margin: 20px;
   padding: 20px;
   border-radius: 10px;
+  justify-items: center;
+}
+
+.imageContainer {
+  display: grid;
+  align-items: center;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+.info {
   display: grid;
   justify-items: center;
   align-items: center;
-  gap: 10px;
 }
 
 .card a {
@@ -20,14 +29,17 @@
   border-radius: 10px;
 }
 
-.card h2 {
-  font-size: 1.2rem;
-  text-align: center;
+.card h2,
+.card p {
   margin: 0;
 }
 
-.card p {
-  margin: 0;
+.productTitle {
+  display: block;
+  font-size: 1.2rem;
+  text-align: center;
+  max-height: 90px;
+  overflow: hidden;
 }
 
 .rating {
@@ -35,6 +47,7 @@
   grid-auto-flow: column;
   align-items: center;
   gap: 5px;
+  margin: 10px 0;
 }
 
 .ratingCount {

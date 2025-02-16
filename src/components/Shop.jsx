@@ -73,7 +73,6 @@ export default function Shop() {
 
   function filterProducts() {
     const filteredProducts = products.filter((product) => {
-      const isInSearch = product.title.toLowerCase().includes(filters.search);
       const isRating = product.rating.rate >= filters.rating;
       const isMinPrice = product.price >= filters.minPrice;
       const isMaxPrice = product.price <= filters.maxPrice;
@@ -81,7 +80,11 @@ export default function Shop() {
       const isInCategory =
         product.category === filters.category || filters.category === 'all';
 
-      return isInSearch && isInCategory && isRating && isMinPrice && isMaxPrice;
+      const isInSearch =
+        product.title.toLowerCase().includes(filters.search) ||
+        product.description.toLowerCase().includes(filters.search);
+
+      return isRating && isMinPrice && isMaxPrice && isInSearch && isInCategory;
     });
 
     return filteredProducts;

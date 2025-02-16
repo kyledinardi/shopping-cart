@@ -9,6 +9,7 @@ nav {
   display: grid;
   grid-auto-flow: column;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
@@ -28,16 +29,17 @@ nav {
   padding: 0;
 }
 
-nav li {
-  height: 40px;
-  width: 60px;
-}
-
 .nav button {
   background-color: #afcbff;
   border: 1px black solid;
   border-radius: 5px;
   height: 40px;
-  width: 60px;
+  width: 50px;
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    font-size: 1.2rem;
+  }
 }

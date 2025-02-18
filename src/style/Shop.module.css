@@ -5,11 +5,12 @@
 
 .cardContainer {
   display: grid;
-  grid-template-columns: repeat(4,275px);
+  grid-template-columns: repeat(auto-fill,275px);
   padding: 20px;
   gap: 20px;
   width: min(100vw, 1200px);
   background-color: #afcbff;
+  justify-content: center;
 }
 
 .loading {

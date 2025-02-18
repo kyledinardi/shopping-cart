@@ -11,3 +11,24 @@
   max-width: 200px;
   max-height: 200px;
 }
+
+.cartItem h2 {
+  margin-top: 0;
+}
+
+.deleteButton {
+  background-color: inherit;
+  border: 0;
+  padding: 0;
+}
+
+@media (max-width: 600px) {
+  .cartItem {
+    grid-template-columns: 1fr max-content;
+    grid-template-rows: 200px 1fr;
+  }
+
+  .cartItem img,  .titleAndQuantity {
+    grid-column: span 2;
+  }
+}

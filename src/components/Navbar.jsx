@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from '../style/Navbar.module.css';
 
-export default function Navbar({ quantity }) {
+function Navbar({ totalQuantity }) {
   return (
     <div className={styles.navWrapper}>
       <nav className={styles.nav}>
@@ -21,10 +21,10 @@ export default function Navbar({ quantity }) {
             </Link>
           </li>
           <li>
-            <Link to='#'>
-              <button className={styles.cartBtn}>
+            <Link to='/cart'>
+              <button>
                 <span className='material-symbols-outlined'>shopping_cart</span>
-                <span className={styles.quantity}>{quantity}</span>
+                <span>{totalQuantity}</span>
               </button>
             </Link>
           </li>
@@ -34,6 +34,5 @@ export default function Navbar({ quantity }) {
   );
 }
 
-Navbar.propTypes = {
-  quantity: PropTypes.number,
-};
+Navbar.propTypes = { totalQuantity: PropTypes.number };
+export default Navbar;

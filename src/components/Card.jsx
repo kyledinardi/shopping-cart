@@ -28,9 +28,5 @@ function Card({ product }) {
   );
 }
 
-Card.propTypes = {
-  product: PropTypes.object,
-  addToCart: PropTypes.func,
-};
-
+Card.propTypes = { product: PropTypes.object };
 export default Card;

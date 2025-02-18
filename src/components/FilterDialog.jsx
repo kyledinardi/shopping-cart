@@ -12,7 +12,7 @@ function FilterDialog({ handleFilters }) {
     if (newFilters.minPrice === '') {
       newFilters.minPrice = 0;
     }
-    
+
     if (newFilters.maxPrice === '') {
       newFilters.maxPrice = 10000;
     }
@@ -83,8 +83,5 @@ function FilterDialog({ handleFilters }) {
   );
 }
 
-FilterDialog.propTypes = {
-  handleFilters: PropTypes.func,
-};
-
+FilterDialog.propTypes = { handleFilters: PropTypes.func };
 export default FilterDialog;

@@ -45,9 +45,5 @@ function Querybar({ onSelectSort, onSearch }) {
   );
 }
 
-Querybar.propTypes = {
-  onSelectSort: PropTypes.func,
-  onSearch: PropTypes.func,
-};
-
+Querybar.propTypes = { onSelectSort: PropTypes.func, onSearch: PropTypes.func };
 export default Querybar;

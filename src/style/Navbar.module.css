@@ -34,8 +34,6 @@ nav {
   border: 1px black solid;
   border-radius: 5px;
   height: 40px;
-  width: 50px;
-  cursor: pointer;
 }
 
 @media (max-width: 600px) {

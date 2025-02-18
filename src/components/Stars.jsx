@@ -37,8 +37,5 @@ function Stars({ rating }) {
   );
 }
 
-Stars.propTypes = {
-  rating: PropTypes.number,
-};
-
+Stars.propTypes = { rating: PropTypes.number };
 export default Stars;

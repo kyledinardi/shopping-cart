@@ -1,0 +1,15 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.cartPage {
+  background-color: #afcbff;
+  max-width: 1200px;
+  padding: 20px;
+  display: grid;
+}
+
+.cartPage h1 {
+  text-align: center;
+}

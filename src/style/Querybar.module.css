@@ -20,7 +20,6 @@
 .filter button {
   background-color: #afcbff;
   border: none;
-  cursor: pointer;
 }
 
 @media (min-width: 600px) {

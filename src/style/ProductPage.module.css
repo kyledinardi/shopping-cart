@@ -1,5 +1,6 @@
 .wrapper {
-  display: flex;justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .productPage {
@@ -50,18 +51,6 @@
 
 .purchase label {
   font-weight: bold;
-}
-
-.quantity input {
-  box-sizing: content-box;
-  width: 2ch;
-  margin: 0 5px;
-}
-
-.quantity button {
-  padding: 0;
-  width: 21px;
-  height: 21px;
 }
 
 .addToCartButton {

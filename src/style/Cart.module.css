@@ -11,15 +11,29 @@
   justify-items: center;
 }
 
-.shopButton {
+.shopButton, .checkoutButton {
   padding: 5px 10px;
-  border-radius: 15px;
+  border-radius: 20px;
   border: 1px solid black;
   margin-bottom: 20px;
+  font-size: 1.2rem;
 }
 
 .shopButton a {
   color: black;
   text-decoration: none;
-  font-size: 1.2rem;
+}
+
+.popup {
+  background-color: white;
+  position: relative;
+}
+
+.popup button {
+  background-color: inherit;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }

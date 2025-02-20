@@ -1,9 +1,5 @@
-.wrapper {
-  display: flex;
-  justify-content: center;
-}
-
 .productPage {
+  margin: auto;
   background-color: #afcbff;
   max-width: 1200px;
   padding: 20px;

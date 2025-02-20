@@ -1,9 +1,5 @@
-.wrapper {
-  display: flex;
-  justify-content: center;
-}
-
 .cartPage {
+  margin: auto;
   background-color: #afcbff;
   width: min(100vw, 1200px);
   padding: 20px;
@@ -11,7 +7,8 @@
   justify-items: center;
 }
 
-.shopButton, .checkoutButton {
+.shopButton,
+.checkoutButton {
   padding: 5px 10px;
   border-radius: 20px;
   border: 1px solid black;

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import CartItem from './CartItem.jsx';
+import CartItem from '../components/CartItem.jsx';
 import styles from '../style/Cart.module.css';
 
 function Cart() {
@@ -18,7 +18,7 @@ function Cart() {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <main className={styles.wrapper}>
       <div className={styles.cartPage}>
         <dialog ref={popup} className={styles.popup}>
           <button onClick={() => popup.current.close()}>
@@ -53,7 +53,7 @@ function Cart() {
           </>
         )}
       </div>
-    </div>
+    </main>
   );
 }
 

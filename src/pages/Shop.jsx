@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import FilterDialog from './FilterDialog.jsx';
-import Querybar from './Querybar.jsx';
-import Card from './Card.jsx';
+import FilterDialog from '../components/FilterDialog.jsx';
+import Querybar from '../components/Querybar.jsx';
+import Card from '../components/Card.jsx';
 import styles from '../style/Shop.module.css';
 
 export default function Shop() {
@@ -105,10 +105,10 @@ export default function Shop() {
   }
 
   return (
-    <div className={styles.shop}>
+    <main className={styles.shop}>
       <FilterDialog handleFilters={handleFilters} />
       <Querybar onSearch={handleSearch} onSelectSort={handleSort} />
       <div className={styles.cardContainer}>{renderProducts()}</div>
-    </div>
+    </main>
   );
 }

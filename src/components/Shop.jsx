@@ -19,7 +19,7 @@ export default function Shop() {
   useEffect(() => {
     setError(null);
 
-    fetch('https://fakestoreapi.com/products', { mode: 'cors' })
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/products`)
       .then((responseStream) => {
         if (responseStream.status >= 400) {
           throw new Error(`${responseStream.status} error`);
@@ -100,7 +100,7 @@ export default function Shop() {
     }
 
     return filterProducts().map((product) => (
-      <Card product={product} key={product.id} />
+      <Card product={product} key={product._id} />
     ));
   }
 

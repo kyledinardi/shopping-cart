@@ -17,6 +17,7 @@ module.exports = {
 
   rules: {
     'react/jsx-no-target-blank': 'off',
+    'no-underscore-dangle': ['error', { allow: ['_id'] }],
 
     'react-refresh/only-export-components': [
       'warn',

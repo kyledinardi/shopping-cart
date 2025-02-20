@@ -10,17 +10,17 @@ function App() {
     let newCartContents;
 
     const productInCart = cartContents.find(
-      (cartItem) => cartItem.id === product.id,
+      (cartItem) => cartItem._id === product._id,
     );
 
     if (productInCart) {
       if (productInCart.quantity + quantityDelta === 0) {
         newCartContents = cartContents.filter(
-          (cartItem) => cartItem.id !== product.id,
+          (cartItem) => cartItem._id !== product._id,
         );
       } else {
         newCartContents = cartContents.map((cartItem) => {
-          if (cartItem.id === product.id) {
+          if (cartItem._id === product._id) {
             return { ...cartItem, quantity: cartItem.quantity + quantityDelta };
           }
 

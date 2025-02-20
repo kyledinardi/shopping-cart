@@ -7,13 +7,13 @@ function Card({ product }) {
   return (
     <div className={styles.card}>
       <div className={styles.imageContainer}>
-        <Link to={`/products/${product.id}`}>
+        <Link to={`/products/${product._id}`}>
           <img src={product.image} alt={product.title} />
         </Link>
       </div>
       <div className={styles.info}>
         <h2>
-          <Link to={`/products/${product.id}`} className={styles.productTitle}>
+          <Link to={`/products/${product._id}`} className={styles.productTitle}>
             {product.title}
           </Link>
         </h2>

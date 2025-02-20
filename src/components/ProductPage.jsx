@@ -9,24 +9,20 @@ function ProductPage() {
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [modifyCart] = useOutletContext();
-  const productId = Number(useParams().productId);
+  const { productId } = useParams();
 
   useEffect(() => {
-    if (!productId) {
-      setError({ message: '404: product not found' });
-    } else {
-      fetch(`https://fakestoreapi.com/products/${productId}`)
-        .then((responseStream) => {
-          if (responseStream.status >= 400) {
-            throw new Error(`${responseStream.status} error`);
-          }
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/products/${productId}`)
+      .then((responseStream) => {
+        if (responseStream.status >= 400) {
+          throw new Error(`${responseStream.status} error`);
+        }
 
-          return responseStream.json();
-        })
+        return responseStream.json();
+      })
 
-        .then((response) => setProduct(response))
-        .catch((err) => setError(err));
-    }
+      .then((response) => setProduct(response))
+      .catch((err) => setError(err));
   }, [productId]);
 
   function handleSubmit(e) {

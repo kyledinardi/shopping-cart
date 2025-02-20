@@ -38,7 +38,7 @@ function Cart() {
             <h1>Your Cart</h1>
             <div>
               {cartContents.map((cartItem) => (
-                <CartItem key={cartItem.id} product={cartItem} />
+                <CartItem key={cartItem._id} product={cartItem} />
               ))}
             </div>
             <h2>

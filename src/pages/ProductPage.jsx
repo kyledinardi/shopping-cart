@@ -39,24 +39,29 @@ function ProductPage() {
   }
 
   return (
-    <main className={styles.productPage}>
-      <img src={product.image} alt={product.title} />
-      <div>
-        <h2>{product.title}</h2>
-        <div className={styles.rating}>
-          <span className={styles.rating}>{product.rating.rate}</span>
-          <Stars rating={product.rating.rate} />
-          <span className={styles.ratingCount}>({product.rating.count})</span>
+    <main>
+      <div className={styles.productPage}>
+        <img src={product.image} alt={product.title} />
+        <div>
+          <h2>{product.title}</h2>
+          <div className={styles.rating}>
+            <span className={styles.rating}>{product.rating.rate}</span>
+            <Stars rating={product.rating.rate} />
+            <span className={styles.ratingCount}>({product.rating.count})</span>
+          </div>
+          <p className={styles.price}>${product.price.toFixed(2)}</p>
+          <p>{product.description}</p>
+          <form className={styles.purchase} onSubmit={handleSubmit}>
+            <label htmlFor='quantity'>Quantity:</label>
+            <QuantityInput quantity={quantity} setQuantity={setQuantity} />
+            <button
+              disabled={quantity === ''}
+              className={styles.addToCartButton}
+            >
+              Add to Cart
+            </button>
+          </form>
         </div>
-        <p className={styles.price}>${product.price.toFixed(2)}</p>
-        <p>{product.description}</p>
-        <form className={styles.purchase} onSubmit={handleSubmit}>
-          <label htmlFor='quantity'>Quantity:</label>
-          <QuantityInput quantity={quantity} setQuantity={setQuantity} />
-          <button disabled={quantity === ''} className={styles.addToCartButton}>
-            Add to Cart
-          </button>
-        </form>
       </div>
     </main>
   );

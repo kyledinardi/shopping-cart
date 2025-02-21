@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import Navbar from './components/Navbar.jsx';
+import Footer from './components/Footer.jsx';
 
 function App() {
   const [cartContents, setCartContents] = useState([]);
@@ -42,6 +43,7 @@ function App() {
     <>
       <Navbar totalQuantity={totalQuantity} />
       <Outlet context={[modifyCart, cartContents, totalQuantity]} />
+      <Footer />
     </>
   );
 }

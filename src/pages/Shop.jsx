@@ -105,10 +105,12 @@ export default function Shop() {
   }
 
   return (
-    <main className={styles.shop}>
-      <FilterDialog handleFilters={handleFilters} />
-      <Querybar onSearch={handleSearch} onSelectSort={handleSort} />
-      <div className={styles.cardContainer}>{renderProducts()}</div>
+    <main>
+      <div className={styles.shop}>
+        <FilterDialog handleFilters={handleFilters} />
+        <Querybar onSearch={handleSearch} onSelectSort={handleSort} />
+        <div className={styles.cardContainer}>{renderProducts()}</div>
+      </div>
     </main>
   );
 }

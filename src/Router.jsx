@@ -4,6 +4,7 @@ import Shop from './pages/Shop.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import Cart from './pages/Cart.jsx';
 import ProductPage from './pages/ProductPage.jsx';
+import Login from './pages/Login.jsx';
 
 const routes = [
   {
@@ -17,6 +18,8 @@ const routes = [
     ],
     errorElement: <ErrorPage />,
   },
+
+  { path: '/login', element: <Login />, errorElement: <ErrorPage /> },
 ];
 
 export default routes;

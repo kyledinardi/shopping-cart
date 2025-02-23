@@ -1,22 +1,30 @@
 .wrapper {
-  height: 100vh;
+  height: calc(100vh - 114px);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .login {
   align-self: center;
   background-color: #afcbff;
-  padding: 10px 20px;
+  padding: 30px;
   border-radius: 10px;
+  display: grid;
+  gap: 15px;
+  width: 300px;
+}
+
+.login h1,
+.login p {
+  margin: 0;
 }
 
 .fields input {
   display: block;
   font-size: 1rem;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .login button {
@@ -29,7 +37,6 @@
 
 .loginButton {
   width: 100%;
-  margin: 10px 0;
   background-color: #0e1c36;
   color: white;
   border: none;

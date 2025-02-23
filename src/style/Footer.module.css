@@ -13,6 +13,8 @@ footer a {
   text-decoration: none;
 }
 
-.logo {
+.logoLink, .logo {
   height: 24px;
 }
+
+

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import styles from '../style/Home.module.css';
-import maleClothingImage from '../assets/frames-for-your-heart-OnELxjs2mBc-unsplash.jpg';
-import femaleClothingImage from '../assets/vasilis-caravitis-KhWNxsFWU84-unsplash.jpg';
-import jewelryImage from '../assets/nataliya-melnychuk-oO0JAOJhquk-unsplash.jpg';
-import electronicsImage from '../assets/mohammadreza-alidoost-0rUp9vgyEYo-unsplash.jpg';
+import maleClothingImage from '../assets/frames-for-your-heart-OnELxjs2mBc-unsplash.webp';
+import femaleClothingImage from '../assets/vasilis-caravitis-KhWNxsFWU84-unsplash.webp';
+import jewelryImage from '../assets/nataliya-melnychuk-oO0JAOJhquk-unsplash.webp';
+import electronicsImage from '../assets/mohammadreza-alidoost-0rUp9vgyEYo-unsplash.webp';
 
 export default function Home() {
   return (

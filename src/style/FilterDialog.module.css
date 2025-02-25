@@ -1,8 +1,21 @@
 .dialog {
+  position: relative;
   background-color: #0e1c36;
   border-radius: 20px;
   color: white;
+  border: 1px solid black;
   font-size: 1.5rem;
+  padding: 20px;
+}
+
+.closeButton {
+  background-color: inherit;
+  color: white;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 .fields {
@@ -12,14 +25,26 @@
   text-align: center;
 }
 
-.priceRange {
+.label {
+  justify-self: end;
+}
+
+.input {
+  justify-self: start;
+}
+
+.dialog p {
   margin: 0;
 }
 
 .priceInputs {
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: max-content 100px;
   display: grid;
-  align-items: center;
+  gap: 5px;
+}
+
+.priceInputs label {
+  justify-self: end;
 }
 
 .buttons {
@@ -28,4 +53,25 @@
   grid-template-columns: max-content max-content;
   justify-content: center;
   gap: 30px;
+}
+
+.dialog .filterButton {
+  background-color: white;
+  color: black;
+}
+
+@media (max-width: 600px) {
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .buttons {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .label,
+  .input {
+    justify-self: center;
+  }
 }

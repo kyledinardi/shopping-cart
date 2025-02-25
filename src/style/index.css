@@ -32,3 +32,27 @@ button {
   cursor: pointer;
 }
 
+.bigButton,
+.bigLinkButton {
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid black;
+  font-size: 1.2rem;
+  color: white;
+  background-color: #0e1c36;
+}
+
+#root .bigLinkButton {
+  padding: 0;
+}
+
+.bigLinkButton a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.bigButton:disabled {
+  color: gray;
+}

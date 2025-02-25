@@ -34,6 +34,9 @@ function FilterDialog({ handleFilters }) {
 
   return (
     <dialog className={styles.dialog}>
+      <button className={styles.closeButton}>
+        <span className='material-symbols-outlined'>close</span>
+      </button>
       <form
         className={styles.form}
         method='dialog'
@@ -41,16 +44,20 @@ function FilterDialog({ handleFilters }) {
         onReset={handleReset}
       >
         <div className={styles.fields}>
-          <label htmlFor='category'>Category</label>
-          <select name='category' id='category'>
+          <label className={styles.label} htmlFor='category'>
+            Category
+          </label>
+          <select className={styles.input} name='category' id='category'>
             <option value='all'>All Categories</option>
             <option value="men's clothing">Men&apos;s Clothing</option>
             <option value="women's clothing">Women&apos;s Clothing</option>
             <option value='jewelery'>Jewelry</option>
             <option value='electronics'>Electronics</option>
           </select>
-          <label htmlFor='rating'>Minimum Rating</label>
-          <div className={styles.rangeInput}>
+          <label className={styles.label} htmlFor='rating'>
+            Minimum Rating
+          </label>
+          <div className={styles.input}>
             <input
               type='range'
               name='rating'
@@ -66,8 +73,8 @@ function FilterDialog({ handleFilters }) {
             />
             <output>0.0</output>
           </div>
-          <p className={styles.priceRange}>Price Range</p>
-          <div className={styles.priceInputs}>
+          <p className={styles.label}>Price Range</p>
+          <div className={`${styles.input} ${styles.priceInputs}`}>
             <label htmlFor='minPrice'>Min: $</label>
             <input type='number' name='minPrice' id='minPrice' min={0} />
             <label htmlFor='maxPrice'>Max: $</label>
@@ -75,8 +82,12 @@ function FilterDialog({ handleFilters }) {
           </div>
         </div>
         <div className={styles.buttons}>
-          <button type='submit'>Filter</button>
-          <button type='reset'>Remove All Filters</button>
+          <button className={`bigButton ${styles.filterButton}`} type='submit'>
+            Filter
+          </button>
+          <button className={`bigButton ${styles.filterButton}`} type='reset'>
+            Remove All Filters
+          </button>
         </div>
       </form>
     </dialog>

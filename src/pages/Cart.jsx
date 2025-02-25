@@ -30,7 +30,7 @@ function Cart() {
         {cartContents.length === 0 ? (
           <>
             <h2>Your Cart is Empty</h2>
-            <button className={styles.shopButton}>
+            <button className={`bigLinkButton ${styles.shopButton}`}>
               <Link to='/shop'>Shop Now</Link>
             </button>
           </>
@@ -46,7 +46,7 @@ function Cart() {
               Subtotal({totalQuantity} items): ${computeSubtotal()}
             </h2>
             <button
-              className={styles.checkoutButton}
+              className={`bigButton ${styles.checkoutButton}`}
               onClick={() => popup.current.showModal()}
             >
               Checkout

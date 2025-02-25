@@ -1,11 +1,15 @@
+.quantity {
+  display: flex;
+}
+
 .quantity button {
   padding: 0;
-  width: 21px;
-  height: 21px;
+  border: none;
+  background-color: inherit;
+  height: 24px;
 }
 
 .quantity input {
-  box-sizing: content-box;
-  width: 2ch;
   margin: 0 5px;
+  width: 24px;
 }

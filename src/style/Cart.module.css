@@ -9,15 +9,11 @@
 
 .shopButton,
 .checkoutButton {
-  padding: 5px 10px;
-  border-radius: 20px;
-  border: 1px solid black;
   margin-bottom: 20px;
-  font-size: 1.2rem;
 }
 
 .shopButton a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 

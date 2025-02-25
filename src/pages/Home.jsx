@@ -18,7 +18,7 @@ export default function Home() {
             we&apos;ve got you covered. Discover top-quality products, exclusive
             deals, and fast delivery - all at unbeatable prices.
           </p>
-          <button className={styles.shopButton}>
+          <button className='bigLinkButton'>
             <Link to='/shop'>Shop Now</Link>
           </button>
         </div>

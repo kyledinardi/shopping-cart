@@ -21,7 +21,7 @@ function QuantityInput({ quantity, setQuantity }) {
         disabled={quantity <= 0}
         onClick={() => setQuantity(quantity - 1)}
       >
-        -
+        <span className='material-symbols-outlined'>remove</span>
       </button>
       <input
         type='tel'
@@ -36,7 +36,7 @@ function QuantityInput({ quantity, setQuantity }) {
         disabled={quantity >= 99}
         onClick={() => setQuantity(quantity + 1)}
       >
-        +
+        <span className='material-symbols-outlined'>add</span>
       </button>
     </div>
   );

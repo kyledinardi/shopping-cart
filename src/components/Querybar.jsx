@@ -17,7 +17,7 @@ function Querybar({ onSelectSort, onSearch }) {
   return (
     <div className={styles.querybar}>
       <div className={styles.search}>
-        <label htmlFor='search'>
+        <label className={styles.searchLabel} htmlFor='search'>
           <span className='material-symbols-outlined'>search</span>
         </label>
         <input
@@ -28,7 +28,7 @@ function Querybar({ onSelectSort, onSearch }) {
         />
       </div>
       <div className={styles.filter}>
-        <p>Filter: </p>
+        <span>Filter: </span>
         <button onClick={handleFilter}>
           <span className='material-symbols-outlined'>filter_alt</span>
         </button>

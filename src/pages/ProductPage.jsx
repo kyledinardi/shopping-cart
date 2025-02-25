@@ -47,10 +47,7 @@ function ProductPage() {
           <form className={styles.purchase} onSubmit={handleSubmit}>
             <label htmlFor='quantity'>Quantity:</label>
             <QuantityInput quantity={quantity} setQuantity={setQuantity} />
-            <button
-              disabled={quantity === 0}
-              className={styles.addToCartButton}
-            >
+            <button className='bigButton' disabled={quantity === 0}>
               Add to Cart
             </button>
           </form>

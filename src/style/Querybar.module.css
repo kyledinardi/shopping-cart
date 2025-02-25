@@ -1,12 +1,17 @@
 .querybar {
   background-color: #afcbff;
+  grid-auto-flow: column;
   display: grid;
-  grid-auto-flow: row;
+  justify-content: center;
+  gap: 20px;
   align-items: center;
-  justify-items: center;
   padding: 10px;
   width: 100%;
-  box-sizing: border-box;
+}
+
+.searchLabel,
+.filter button {
+  height: 24px;
 }
 
 .search,
@@ -20,13 +25,14 @@
 .filter button {
   background-color: #afcbff;
   border: none;
+  padding: 0;
+  height: 24px;
 }
 
-@media (min-width: 600px) {
+@media (max-width: 600px) {
   .querybar {
-    grid-auto-flow: column;
-    justify-content: center;
-    gap: 20px;
-    height: 60px;
+    grid-auto-flow: row;
+    justify-items: center;
+    gap: 5px;
   }
 }

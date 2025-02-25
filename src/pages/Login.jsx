@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import backendFetch from '../helpers/backendFetch';
 import styles from '../style/Login.module.css';
 
 function Login() {
@@ -8,22 +9,17 @@ function Login() {
 
   async function submitLogin(e) {
     e.preventDefault();
+    const prefix = e.target.id === 'guestLogin' ? 'guest-' : '';
 
-    const responseStream = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/users/login`,
+    const response = await backendFetch('/users/login', {
+      method: 'POST',
+      hasBearer: false,
 
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-
-        body: JSON.stringify({
-          username: e.target[0].value,
-          password: e.target[1].value,
-        }),
+      body: {
+        username: document.getElementById(`${prefix}username`).value,
+        password: document.getElementById(`${prefix}password`).value,
       },
-    );
-
-    const response = await responseStream.json();
+    });
 
     if (response.error) {
       e.target.reset();
@@ -64,9 +60,14 @@ function Login() {
           </div>
           <button className={styles.loginButton}>Log In</button>
         </form>
-        <form onSubmit={(e) => submitLogin(e)}>
-          <input type='hidden' name='username' value='Guest' />
-          <input type='hidden' name='password' value='1' />
+        <form id='guestLogin' onSubmit={(e) => submitLogin(e)}>
+          <input
+            type='hidden'
+            id='guest-username'
+            name='username'
+            value='Guest'
+          />
+          <input type='hidden' id='guest-password' name='password' value='1' />
           <button className={styles.guestButton}>Log in as guest</button>
         </form>
         <p>

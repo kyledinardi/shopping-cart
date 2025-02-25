@@ -10,10 +10,11 @@ function Cart() {
   function computeSubtotal() {
     return cartContents
       .reduce(
-        (subtotal, cartItem) => subtotal + cartItem.price * cartItem.quantity,
+        (subtotal, cartItem) =>
+          subtotal + cartItem.product.price * cartItem.quantity,
         0,
       )
-      
+
       .toFixed(2);
   }
 
@@ -38,7 +39,7 @@ function Cart() {
             <h1>Your Cart</h1>
             <div>
               {cartContents.map((cartItem) => (
-                <CartItem key={cartItem._id} product={cartItem} />
+                <CartItem key={cartItem._id} cartItem={cartItem} />
               ))}
             </div>
             <h2>

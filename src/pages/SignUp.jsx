@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import backendFetch from '../helpers/backendFetch';
 import styles from '../style/Login.module.css';
 
 function Login() {
@@ -9,22 +10,16 @@ function Login() {
   async function submitLogin(e) {
     e.preventDefault();
 
-    const responseStream = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}/users`,
+    const response = await backendFetch('/users', {
+      method: 'POST',
+      hasBearer: false,
 
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-
-        body: JSON.stringify({
-          username: document.getElementById('username').value,
-          password: document.getElementById('password').value,
-          passwordConfirm: document.getElementById('passwordConfirm').value,
-        }),
+      body: {
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value,
+        passwordConfirm: document.getElementById('passwordConfirm').value,
       },
-    );
-
-    const response = await responseStream.json();
+    });
 
     if (response.errors) {
       e.target.reset();

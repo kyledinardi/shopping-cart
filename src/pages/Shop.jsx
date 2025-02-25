@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import FilterDialog from '../components/FilterDialog.jsx';
 import Querybar from '../components/Querybar.jsx';
 import Card from '../components/Card.jsx';
+import backendFetch from '../helpers/backendFetch';
 import styles from '../style/Shop.module.css';
 
 export default function Shop() {
@@ -19,15 +20,7 @@ export default function Shop() {
   useEffect(() => {
     setError(null);
 
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/products`)
-      .then((responseStream) => {
-        if (responseStream.status >= 400) {
-          throw new Error(`${responseStream.status} error`);
-        }
-
-        return responseStream.json();
-      })
-
+    backendFetch('/products', { hasBearer: false })
       .then((response) => {
         const sorted = response.sort((a, b) =>
           a.rating.rate > b.rating.rate ? -1 : 1,

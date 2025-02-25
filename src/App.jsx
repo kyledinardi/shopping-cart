@@ -1,48 +1,45 @@
 import { Outlet } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
+import backendFetch from './helpers/backendFetch';
 
 function App() {
   const [cartContents, setCartContents] = useState([]);
   const [totalQuantity, setTotalQuantity] = useState(0);
 
-  function modifyCart(product, quantityDelta) {
-    let newCartContents;
-
-    const productInCart = cartContents.find(
-      (cartItem) => cartItem._id === product._id,
-    );
-
-    if (productInCart) {
-      if (productInCart.quantity + quantityDelta === 0) {
-        newCartContents = cartContents.filter(
-          (cartItem) => cartItem._id !== product._id,
-        );
-      } else {
-        newCartContents = cartContents.map((cartItem) => {
-          if (cartItem._id === product._id) {
-            return { ...cartItem, quantity: cartItem.quantity + quantityDelta };
-          }
-
-          return cartItem;
+  useEffect(() => {
+    function setItems() {
+      if (localStorage.getItem('token')) {
+        backendFetch('/user').then((response) => {
+          setCartContents(response.user.cart);
+          setTotalQuantity(response.user.totalCartQuantity);
         });
+      } else {
+        setCartContents([]);
+        setTotalQuantity(0);
       }
-    } else {
-      newCartContents = [
-        ...cartContents,
-        { ...product, quantity: quantityDelta },
-      ];
     }
 
-    setCartContents(newCartContents);
-    setTotalQuantity(totalQuantity + quantityDelta);
+    setItems();
+    window.addEventListener('storage', setItems);
+    return () => window.removeEventListener('storage', setItems);
+  }, []);
+
+  async function updateCart(product, quantityDelta) {
+    const response = await backendFetch('/cart', {
+      method: 'PUT',
+      body: { productId: product._id, quantityDelta },
+    });
+
+    setCartContents(response.cart);
+    setTotalQuantity(response.totalQuantity);
   }
 
   return (
     <>
       <Navbar totalQuantity={totalQuantity} />
-      <Outlet context={[modifyCart, cartContents, totalQuantity]} />
+      <Outlet context={[updateCart, cartContents, totalQuantity]} />
       <Footer />
     </>
   );

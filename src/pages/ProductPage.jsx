@@ -2,32 +2,25 @@ import { useEffect, useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
 import Stars from '../components/Stars.jsx';
 import QuantityInput from '../components/QuanityInput.jsx';
+import backendFetch from '../helpers/backendFetch';
 import styles from '../style/ProductPage.module.css';
 
 function ProductPage() {
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [modifyCart] = useOutletContext();
+  const [updateCart] = useOutletContext();
   const { productId } = useParams();
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/products/${productId}`)
-      .then((responseStream) => {
-        if (responseStream.status >= 400) {
-          throw new Error(`${responseStream.status} error`);
-        }
-
-        return responseStream.json();
-      })
-
+    backendFetch(`/products/${productId}`, { hasBearer: false })
       .then((response) => setProduct(response))
       .catch((err) => setError(err));
   }, [productId]);
 
   function handleSubmit(e) {
     e.preventDefault();
-    modifyCart(product, quantity);
+    updateCart(product, quantity);
   }
 
   if (error) {
@@ -55,7 +48,7 @@ function ProductPage() {
             <label htmlFor='quantity'>Quantity:</label>
             <QuantityInput quantity={quantity} setQuantity={setQuantity} />
             <button
-              disabled={quantity === ''}
+              disabled={quantity === 0}
               className={styles.addToCartButton}
             >
               Add to Cart

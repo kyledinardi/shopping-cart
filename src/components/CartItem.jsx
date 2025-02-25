@@ -3,25 +3,25 @@ import { useOutletContext } from 'react-router-dom';
 import QuantityInput from './QuanityInput.jsx';
 import styles from '../style/CartItem.module.css';
 
-function CartItem({ product }) {
-  const [modifyCart] = useOutletContext();
+function CartItem({ cartItem }) {
+  const [updateCart] = useOutletContext();
 
   return (
     <div className={styles.cartItem}>
-      <img src={product.image} alt={product.title} />
+      <img src={cartItem.product.image} alt={cartItem.product.title} />
       <div className={styles.titleAndQuantity}>
-        <h2>{product.title}</h2>
+        <h2>{cartItem.product.title}</h2>
         <QuantityInput
-          quantity={product.quantity}
+          quantity={cartItem.quantity}
           setQuantity={(newQuantity) =>
-            modifyCart(product, newQuantity - product.quantity)
+            updateCart(cartItem.product, newQuantity - cartItem.quantity)
           }
         />
       </div>
-      <p>${(product.price * product.quantity).toFixed(2)}</p>
+      <p>${(cartItem.product.price * cartItem.quantity).toFixed(2)}</p>
       <button
         className={styles.deleteButton}
-        onClick={() => modifyCart(product, -product.quantity)}
+        onClick={() => updateCart(cartItem.product, -cartItem.quantity)}
       >
         <span className='material-symbols-outlined'>delete</span>
       </button>
@@ -29,5 +29,5 @@ function CartItem({ product }) {
   );
 }
 
-CartItem.propTypes = { product: PropTypes.object };
+CartItem.propTypes = { cartItem: PropTypes.object };
 export default CartItem;

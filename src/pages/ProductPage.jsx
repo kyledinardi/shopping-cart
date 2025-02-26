@@ -14,7 +14,7 @@ function ProductPage() {
 
   useEffect(() => {
     backendFetch(`/products/${productId}`, { hasBearer: false })
-      .then((response) => setProduct(response))
+      .then((response) => setProduct(response.product))
       .catch((err) => setError(err));
   }, [productId]);
 

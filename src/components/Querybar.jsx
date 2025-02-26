@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import styles from '../style/Querybar.module.css';
 
-function Querybar({ onSelectSort, onSearch }) {
+function Querybar({ handleSearchChange, handleSortChange }) {
   function handleSearch(e) {
-    onSearch(e.target.value);
+    handleSearchChange(e.target.value);
   }
 
   function handleSort(e) {
-    onSelectSort(e.target.value);
+    handleSortChange(e.target.value);
   }
 
   function handleFilter() {
@@ -36,14 +36,17 @@ function Querybar({ onSelectSort, onSearch }) {
       <div className={styles.sort}>
         <label htmlFor='sort'>Sort by: </label>
         <select name='sort' id='sort' onChange={handleSort}>
-          <option value='rating'>Highest Rated</option>
-          <option value='priceAsc'>Price (Low to High)</option>
-          <option value='priceDes'>Price (High to Low)</option>
+          <option value='rating-desc'>Highest Rated</option>
+          <option value='price-asc'>Price (Low to High)</option>
+          <option value='price-desc'>Price (High to Low)</option>
         </select>
       </div>
     </div>
   );
 }
 
-Querybar.propTypes = { onSelectSort: PropTypes.func, onSearch: PropTypes.func };
+Querybar.propTypes = {
+  handleSearchChange: PropTypes.func,
+  handleSortChange: PropTypes.func,
+};
 export default Querybar;

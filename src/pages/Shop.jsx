@@ -8,9 +8,10 @@ import styles from '../style/Shop.module.css';
 export default function Shop() {
   const [error, setError] = useState(null);
   const [products, setProducts] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sort, setSort] = useState('');
 
   const [filters, setFilters] = useState({
-    search: '',
     category: 'all',
     rating: 0,
     minPrice: 0,
@@ -21,66 +22,35 @@ export default function Shop() {
     setError(null);
 
     backendFetch('/products', { hasBearer: false })
-      .then((response) => {
-        const sorted = response.sort((a, b) =>
-          a.rating.rate > b.rating.rate ? -1 : 1,
-        );
-
-        setProducts(sorted);
-      })
-
+      .then((response) => setProducts(response.products))
       .catch((err) => setError(err));
   }, []);
 
-  function handleSort(sortType) {
-    const newProducts = [...products];
-
-    if (sortType === 'rating') {
-      newProducts.sort((a, b) => (a.rating.rate > b.rating.rate ? -1 : 1));
-    }
-
-    if (sortType === 'priceAsc') {
-      newProducts.sort((a, b) => (a.price > b.price ? 1 : -1));
-    }
-
-    if (sortType === 'priceDes') {
-      newProducts.sort((a, b) => (a.price > b.price ? -1 : 1));
-    }
-
-    setProducts(newProducts);
-  }
-
-  function handleSearch(query) {
-    setFilters({ ...filters, search: query.toLowerCase() });
-  }
-
-  function handleFilters(newFilters) {
-    setFilters({
-      ...filters,
-      category: newFilters.category,
-      rating: newFilters.rating,
-      minPrice: newFilters.minPrice,
-      maxPrice: newFilters.maxPrice,
+  async function updateProducts(queryParams) {
+    const response = await backendFetch(`/products?${queryParams}`, {
+      hasBearer: false,
     });
+    setProducts(response.products);
   }
 
-  function filterProducts() {
-    const filteredProducts = products.filter((product) => {
-      const isRating = product.rating.rate >= filters.rating;
-      const isMinPrice = product.price >= filters.minPrice;
-      const isMaxPrice = product.price <= filters.maxPrice;
+  function buildQueryParams(newFilters, newSearch, newSort) {
+    const { category, rating, minPrice, maxPrice } = newFilters;
+    return `category=${category}&rating=${rating}&minPrice=${minPrice}&maxPrice=${maxPrice}&search=${newSearch}&sort=${newSort}`;
+  }
 
-      const isInCategory =
-        product.category === filters.category || filters.category === 'all';
+  function handleFiltersChange(newFilters) {
+    setFilters(newFilters);
+    updateProducts(buildQueryParams(newFilters, searchQuery, sort));
+  }
 
-      const isInSearch =
-        product.title.toLowerCase().includes(filters.search) ||
-        product.description.toLowerCase().includes(filters.search);
+  function handleSearchChange(newSearch) {
+    setSearchQuery(newSearch);
+    updateProducts(buildQueryParams(filters, newSearch, sort));
+  }
 
-      return isRating && isMinPrice && isMaxPrice && isInSearch && isInCategory;
-    });
-
-    return filteredProducts;
+  function handleSortChange(newSort) {
+    setSort(newSort);
+    updateProducts(buildQueryParams(filters, searchQuery, newSort));
   }
 
   function renderProducts() {
@@ -92,7 +62,7 @@ export default function Shop() {
       return <h1 className={styles.loading}>Loading...</h1>;
     }
 
-    return filterProducts().map((product) => (
+    return products.map((product) => (
       <Card product={product} key={product._id} />
     ));
   }
@@ -100,8 +70,11 @@ export default function Shop() {
   return (
     <main>
       <div className={styles.shop}>
-        <FilterDialog handleFilters={handleFilters} />
-        <Querybar onSearch={handleSearch} onSelectSort={handleSort} />
+        <FilterDialog handleFiltersChange={handleFiltersChange} />
+        <Querybar
+          handleSearchChange={handleSearchChange}
+          handleSortChange={handleSortChange}
+        />
         <div className={styles.cardContainer}>{renderProducts()}</div>
       </div>
     </main>

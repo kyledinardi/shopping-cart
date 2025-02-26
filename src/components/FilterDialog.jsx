@@ -1,34 +1,27 @@
 import PropTypes from 'prop-types';
 import styles from '../style/FilterDialog.module.css';
 
-function FilterDialog({ handleFilters }) {
-  function handleSubmit() {
-    const newFilters = {};
-    newFilters.category = document.getElementById('category').value;
-    newFilters.rating = document.getElementById('rating').value;
-    newFilters.minPrice = document.getElementById('minPrice').value;
-    newFilters.maxPrice = document.getElementById('maxPrice').value;
+function FilterDialog({ handleFiltersChange }) {
+  async function handleSubmit() {
+    const filters = {};
+    filters.category = document.getElementById('category').value;
+    filters.rating = document.getElementById('rating').value;
+    filters.minPrice = document.getElementById('minPrice').value;
+    filters.maxPrice = document.getElementById('maxPrice').value;
 
-    if (newFilters.minPrice === '') {
-      newFilters.minPrice = 0;
-    }
-
-    if (newFilters.maxPrice === '') {
-      newFilters.maxPrice = 10000;
-    }
-
-    handleFilters(newFilters);
+    handleFiltersChange(filters);
   }
 
   function handleReset() {
-    const newFilters = {
+    const filters = {
       category: 'all',
       rating: 0,
       minPrice: 0,
       maxPrice: 10000,
     };
 
-    handleFilters(newFilters);
+    handleFiltersChange(filters);
+    document.querySelector('form').reset();
     document.querySelector('dialog').close();
   }
 
@@ -94,5 +87,5 @@ function FilterDialog({ handleFilters }) {
   );
 }
 
-FilterDialog.propTypes = { handleFilters: PropTypes.func };
+FilterDialog.propTypes = { handleFiltersChange: PropTypes.func };
 export default FilterDialog;

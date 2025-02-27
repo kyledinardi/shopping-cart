@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import FilterDialog from '../components/FilterDialog.jsx';
 import Querybar from '../components/Querybar.jsx';
 import Card from '../components/Card.jsx';
@@ -10,6 +10,7 @@ export default function Shop() {
   const [products, setProducts] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [sort, setSort] = useState('');
+  const filterModal = useRef(null);
 
   const [filters, setFilters] = useState({
     category: 'all',
@@ -70,10 +71,14 @@ export default function Shop() {
   return (
     <main>
       <div className={styles.shop}>
-        <FilterDialog handleFiltersChange={handleFiltersChange} />
+        <FilterDialog
+          handleFiltersChange={handleFiltersChange}
+          filterModal={filterModal}
+        />
         <Querybar
           handleSearchChange={handleSearchChange}
           handleSortChange={handleSortChange}
+          filterModal={filterModal}
         />
         <div className={styles.cardContainer}>{renderProducts()}</div>
       </div>

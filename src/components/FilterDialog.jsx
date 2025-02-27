@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import styles from '../style/FilterDialog.module.css';
 
-function FilterDialog({ handleFiltersChange }) {
+function FilterDialog({ handleFiltersChange, filterModal }) {
   async function handleSubmit() {
-    const filters = {};
-    filters.category = document.getElementById('category').value;
-    filters.rating = document.getElementById('rating').value;
-    filters.minPrice = document.getElementById('minPrice').value;
-    filters.maxPrice = document.getElementById('maxPrice').value;
+    const filters = {
+      category: document.getElementById('category').value,
+      rating: document.getElementById('rating').value,
+      minPrice: document.getElementById('minPrice').value,
+      maxPrice: document.getElementById('maxPrice').value,
+    };
 
     handleFiltersChange(filters);
   }
@@ -26,8 +27,11 @@ function FilterDialog({ handleFiltersChange }) {
   }
 
   return (
-    <dialog className={styles.dialog}>
-      <button className={styles.closeButton}>
+    <dialog ref={filterModal} className={styles.dialog}>
+      <button
+        className={styles.closeButton}
+        onClick={() => filterModal.current.close()}
+      >
         <span className='material-symbols-outlined'>close</span>
       </button>
       <form
@@ -87,5 +91,8 @@ function FilterDialog({ handleFiltersChange }) {
   );
 }
 
-FilterDialog.propTypes = { handleFiltersChange: PropTypes.func };
+FilterDialog.propTypes = {
+  handleFiltersChange: PropTypes.func,
+  filterModal: PropTypes.object,
+};
 export default FilterDialog;

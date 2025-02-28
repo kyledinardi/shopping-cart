@@ -38,9 +38,9 @@ function ProductPage() {
         <div>
           <h2>{product.title}</h2>
           <div className={styles.rating}>
-            <span className={styles.rating}>{product.rating.rate}</span>
-            <Stars rating={product.rating.rate} />
-            <span className={styles.ratingCount}>({product.rating.count})</span>
+            <span className={styles.rating}>{product.averageRating}</span>
+            <Stars rating={product.averageRating} />
+            <span className={styles.ratingCount}>{product.ratings.length}</span>
           </div>
           <p className={styles.price}>${product.price.toFixed(2)}</p>
           <p>{product.description}</p>

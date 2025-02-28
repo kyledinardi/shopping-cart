@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     function setItems() {
       if (localStorage.getItem('token')) {
-        backendFetch('/user').then((response) => {
+        backendFetch('/users/current-user').then((response) => {
           setCartContents(response.user.cart);
           setTotalQuantity(response.user.totalCartQuantity);
         });
@@ -27,7 +27,7 @@ function App() {
   }, []);
 
   async function updateCart(product, quantityDelta) {
-    const response = await backendFetch('/cart', {
+    const response = await backendFetch('/users/cart', {
       method: 'PUT',
       body: { productId: product._id, quantityDelta },
     });

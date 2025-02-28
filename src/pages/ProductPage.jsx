@@ -23,6 +23,15 @@ function ProductPage() {
     updateCart(product, quantity);
   }
 
+  async function handleRatingChange() {
+    const response = await backendFetch(`/products/rating/${productId}`, {
+      method: 'PUT',
+      body: { rating: document.getElementById('rating').value },
+    });
+
+    setProduct(response.product);
+  }
+
   if (error) {
     return <h1>{error.message}</h1>;
   }
@@ -42,6 +51,16 @@ function ProductPage() {
             <Stars rating={product.averageRating} />
             <span className={styles.ratingCount}>{product.ratings.length}</span>
           </div>
+          <label htmlFor='rating'>Rate This Product </label>
+          <select onChange={handleRatingChange} name='rating' id='rating'>
+            <option value='unrated'>Select a rating</option>
+            <option value='0'>0 Stars</option>
+            <option value='1'>1 Star</option>
+            <option value='2'>2 Stars</option>
+            <option value='3'>3 Stars</option>
+            <option value='4'>4 Stars</option>
+            <option value='5'>5 Stars</option>
+          </select>
           <p className={styles.price}>${product.price.toFixed(2)}</p>
           <p>{product.description}</p>
           <form className={styles.purchase} onSubmit={handleSubmit}>

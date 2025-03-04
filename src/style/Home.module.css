@@ -15,6 +15,12 @@
   border-radius: 10px;
 }
 
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 .categories {
   display: grid;
   grid-template-columns: 280px 1fr;

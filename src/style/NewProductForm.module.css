@@ -1,0 +1,45 @@
+.wrapper {
+  height: calc(100vh - 114px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.newProductForm {
+  margin: auto;
+  background-color: #afcbff;
+  width: 280px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.newProductForm h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.newProductForm form,
+.field input {
+  width: 100%;
+}
+
+.newProductForm form {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

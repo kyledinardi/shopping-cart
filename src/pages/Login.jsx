@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import backendFetch from '../helpers/backendFetch';
 import styles from '../style/Login.module.css';
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate();
 
   async function submitLogin(e) {
     e.preventDefault();
@@ -15,10 +14,10 @@ function Login() {
       method: 'POST',
       hasBearer: false,
 
-      body: {
+      body: JSON.stringify({
         username: document.getElementById(`${prefix}username`).value,
         password: document.getElementById(`${prefix}password`).value,
-      },
+      }),
     });
 
     if (response.error) {
@@ -29,7 +28,7 @@ function Login() {
 
     localStorage.setItem('token', response.token);
     localStorage.setItem('userId', response.user._id);
-    navigate('/');
+    window.location.assign('/');
   }
 
   return (

@@ -18,9 +18,15 @@ function Card({ product }) {
           </Link>
         </h2>
         <div className={styles.rating}>
-          <p>{product.averageRating}</p>
-          <Stars rating={product.averageRating} />
-          <p className={styles.ratingCount}>({product.ratings.length})</p>
+          {product.ratingCount > 0 ? (
+            <>
+              <p>{Math.round(product.averageRating * 10) / 10}</p>
+              <Stars rating={product.averageRating} />
+              <p className={styles.ratingCount}>({product.ratingCount})</p>
+            </>
+          ) : (
+            <p>No ratings</p>
+          )}
         </div>
         <p className={styles.price}>${product.price.toFixed(2)}</p>
       </div>

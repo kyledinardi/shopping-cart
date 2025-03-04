@@ -1,13 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from '../style/Navbar.module.css';
 
 function Navbar({ totalQuantity }) {
-  const navigate = useNavigate();
-
   function logOut() {
     localStorage.clear();
-    navigate('/');
+    window.location.assign('/');
   }
 
   return (

@@ -24,20 +24,23 @@ function ProductPage() {
   }
 
   async function handleRatingChange() {
-    const response = await backendFetch(`/products/rating/${productId}`, {
-      method: 'PUT',
-      body: { rating: document.getElementById('rating').value },
+    const rating = document.getElementById('rating').value;
+    const isRated = rating !== 'unrated';
+
+    const response = await backendFetch(`/ratings`, {
+      method: isRated ? 'PUT' : 'DELETE',
+      body: JSON.stringify({ productId, rating: isRated ? rating : undefined }),
     });
 
     setProduct(response.product);
   }
 
   if (error) {
-    return <h1>{error.message}</h1>;
+    return <h1 className='loading'>{error.message}</h1>;
   }
 
   if (!product) {
-    return <h1>Loading...</h1>;
+    return <h1 className='loading'>Loading...</h1>;
   }
 
   return (
@@ -47,29 +50,45 @@ function ProductPage() {
         <div>
           <h2>{product.title}</h2>
           <div className={styles.rating}>
-            <span className={styles.rating}>{product.averageRating}</span>
-            <Stars rating={product.averageRating} />
-            <span className={styles.ratingCount}>{product.ratings.length}</span>
+            {product.ratingCount > 0 ? (
+              <>
+                <span className={styles.rating}>
+                  {Math.round(product.averageRating * 10) / 10}
+                </span>
+                <Stars rating={product.averageRating} />
+                <span className={styles.ratingCount}>
+                  ({product.ratingCount})
+                </span>
+              </>
+            ) : (
+              <p>No ratings</p>
+            )}
           </div>
-          <label htmlFor='rating'>Rate This Product </label>
-          <select onChange={handleRatingChange} name='rating' id='rating'>
-            <option value='unrated'>Select a rating</option>
-            <option value='0'>0 Stars</option>
-            <option value='1'>1 Star</option>
-            <option value='2'>2 Stars</option>
-            <option value='3'>3 Stars</option>
-            <option value='4'>4 Stars</option>
-            <option value='5'>5 Stars</option>
-          </select>
+          {localStorage.getItem('token') && (
+            <>
+              <label htmlFor='rating'>Rate This Product </label>
+              <select onChange={handleRatingChange} name='rating' id='rating'>
+                <option value='unrated'>Select a rating</option>
+                <option value='0'>0 Stars</option>
+                <option value='1'>1 Star</option>
+                <option value='2'>2 Stars</option>
+                <option value='3'>3 Stars</option>
+                <option value='4'>4 Stars</option>
+                <option value='5'>5 Stars</option>
+              </select>
+            </>
+          )}
           <p className={styles.price}>${product.price.toFixed(2)}</p>
           <p>{product.description}</p>
-          <form className={styles.purchase} onSubmit={handleSubmit}>
-            <label htmlFor='quantity'>Quantity:</label>
-            <QuantityInput quantity={quantity} setQuantity={setQuantity} />
-            <button className='bigButton' disabled={quantity === 0}>
-              Add to Cart
-            </button>
-          </form>
+          {localStorage.getItem('token') && (
+            <form className={styles.purchase} onSubmit={handleSubmit}>
+              <label htmlFor='quantity'>Quantity:</label>
+              <QuantityInput quantity={quantity} setQuantity={setQuantity} />
+              <button className='bigButton' disabled={quantity === 0}>
+                Add to Cart
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </main>

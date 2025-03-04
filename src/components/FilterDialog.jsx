@@ -6,8 +6,8 @@ function FilterDialog({ handleFiltersChange, filterModal }) {
     const filters = {
       category: document.getElementById('category').value,
       rating: document.getElementById('rating').value,
-      minPrice: document.getElementById('minPrice').value,
-      maxPrice: document.getElementById('maxPrice').value,
+      minPrice: document.getElementById('minPrice').value || 0,
+      maxPrice: document.getElementById('maxPrice').value || 10000,
     };
 
     handleFiltersChange(filters);
@@ -20,7 +20,6 @@ function FilterDialog({ handleFiltersChange, filterModal }) {
       minPrice: 0,
       maxPrice: 10000,
     };
-
     handleFiltersChange(filters);
     document.querySelector('form').reset();
     document.querySelector('dialog').close();

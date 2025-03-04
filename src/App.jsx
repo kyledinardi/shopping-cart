@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { json, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
@@ -9,27 +9,18 @@ function App() {
   const [totalQuantity, setTotalQuantity] = useState(0);
 
   useEffect(() => {
-    function setItems() {
-      if (localStorage.getItem('token')) {
-        backendFetch('/users/current-user').then((response) => {
-          setCartContents(response.user.cart);
-          setTotalQuantity(response.user.totalCartQuantity);
-        });
-      } else {
-        setCartContents([]);
-        setTotalQuantity(0);
-      }
+    if (localStorage.getItem('token')) {
+      backendFetch('/users/current-user').then((response) => {
+        setCartContents(response.user.cart);
+        setTotalQuantity(response.user.totalCartQuantity);
+      });
     }
-
-    setItems();
-    window.addEventListener('storage', setItems);
-    return () => window.removeEventListener('storage', setItems);
   }, []);
 
   async function updateCart(product, quantityDelta) {
     const response = await backendFetch('/users/cart', {
       method: 'PUT',
-      body: { productId: product._id, quantityDelta },
+      body: JSON.stringify({ productId: product._id, quantityDelta }),
     });
 
     setCartContents(response.cart);

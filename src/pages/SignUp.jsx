@@ -14,11 +14,11 @@ function Login() {
       method: 'POST',
       hasBearer: false,
 
-      body: {
+      body: JSON.stringify({
         username: document.getElementById('username').value,
         password: document.getElementById('password').value,
         passwordConfirm: document.getElementById('passwordConfirm').value,
-      },
+      }),
     });
 
     if (response.errors) {

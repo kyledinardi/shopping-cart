@@ -18,9 +18,16 @@ export default function Home() {
             we&apos;ve got you covered. Discover top-quality products, exclusive
             deals, and fast delivery - all at unbeatable prices.
           </p>
-          <button className='bigLinkButton'>
-            <Link to='/shop'>Shop Now</Link>
-          </button>
+          <div className={styles.buttons}>
+            <button className='bigLinkButton'>
+              <Link to='/shop'>Shop Now</Link>
+            </button>
+            {localStorage.getItem('token') && (
+              <button className='bigLinkButton'>
+                <Link to='/new-product'>Suggest a Product</Link>
+              </button>
+            )}
+          </div>
         </div>
         <div className={styles.categories}>
           <img src={maleClothingImage} alt="Trendy men's clothing" />

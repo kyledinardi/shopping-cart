@@ -32,6 +32,15 @@ button {
   cursor: pointer;
 }
 
+.loading {
+  background-color: #afcbff;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  margin: 20px auto;
+  width: min(1200px, 100vw);
+}
+
 .bigButton,
 .bigLinkButton {
   padding: 10px 20px;

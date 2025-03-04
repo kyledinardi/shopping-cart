@@ -56,11 +56,11 @@ export default function Shop() {
 
   function renderProducts() {
     if (error) {
-      return <h1 className={styles.loading}>{error.message}</h1>;
+      return <h1 className='loading'>{error.message}</h1>;
     }
 
     if (!products) {
-      return <h1 className={styles.loading}>Loading...</h1>;
+      return <h1 className='loading'>Loading...</h1>;
     }
 
     return products.map((product) => (

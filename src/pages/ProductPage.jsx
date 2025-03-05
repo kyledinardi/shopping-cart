@@ -7,6 +7,7 @@ import styles from '../style/ProductPage.module.css';
 
 function ProductPage() {
   const [product, setProduct] = useState(null);
+  const [userRating, setUserRating] = useState(null);
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [updateCart] = useOutletContext();
@@ -16,6 +17,12 @@ function ProductPage() {
     backendFetch(`/products/${productId}`, { hasBearer: false })
       .then((response) => setProduct(response.product))
       .catch((err) => setError(err));
+
+    if (localStorage.getItem('token')) {
+      backendFetch(`/ratings/${productId}`).then((response) =>
+        setUserRating(response),
+      );
+    }
   }, [productId]);
 
   function handleSubmit(e) {
@@ -67,7 +74,12 @@ function ProductPage() {
           {localStorage.getItem('token') && (
             <>
               <label htmlFor='rating'>Rate This Product </label>
-              <select onChange={handleRatingChange} name='rating' id='rating'>
+              <select
+                defaultValue={userRating ? userRating.rate : 'unrated'}
+                onChange={handleRatingChange}
+                name='rating'
+                id='rating'
+              >
                 <option value='unrated'>Select a rating</option>
                 <option value='0'>0 Stars</option>
                 <option value='1'>1 Star</option>

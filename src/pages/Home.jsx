@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import backendFetch from '../helpers/backendFetch';
 import styles from '../style/Home.module.css';
 import maleClothingImage from '../assets/frames-for-your-heart-OnELxjs2mBc-unsplash.webp';
 import femaleClothingImage from '../assets/vasilis-caravitis-KhWNxsFWU84-unsplash.webp';
@@ -6,6 +7,13 @@ import jewelryImage from '../assets/nataliya-melnychuk-oO0JAOJhquk-unsplash.webp
 import electronicsImage from '../assets/mohammadreza-alidoost-0rUp9vgyEYo-unsplash.webp';
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  async function randomProduct() {
+    const response = await backendFetch('/products/random');
+    navigate(`/products/${response.product._id}`);
+  }
+
   return (
     <main>
       <div className={styles.home}>
@@ -21,6 +29,9 @@ export default function Home() {
           <div className={styles.buttons}>
             <button className='bigLinkButton'>
               <Link to='/shop'>Shop Now</Link>
+            </button>
+            <button className='bigButton' onClick={randomProduct}>
+              Random Product
             </button>
             {localStorage.getItem('token') && (
               <button className='bigLinkButton'>

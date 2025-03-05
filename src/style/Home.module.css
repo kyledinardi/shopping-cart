@@ -49,4 +49,8 @@
   .categories {
     grid-template-columns: 1fr;
   }
+
+  .buttons {
+    flex-direction: column;
+  }
 }

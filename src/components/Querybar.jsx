@@ -29,6 +29,7 @@ function Querybar({ handleSearchChange, handleSortChange, filterModal }) {
           onChange={(e) => handleSortChange(e.target.value)}
         >
           <option value='averageRating-desc'>Highest Rated</option>
+          <option value='purchaseCount-desc'>Most Purchased</option>
           <option value='price-asc'>Price (Low to High)</option>
           <option value='price-desc'>Price (High to Low)</option>
         </select>

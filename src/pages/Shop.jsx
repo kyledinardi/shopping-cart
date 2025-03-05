@@ -31,6 +31,7 @@ export default function Shop() {
     const response = await backendFetch(`/products?${queryParams}`, {
       hasBearer: false,
     });
+
     setProducts(response.products);
   }
 

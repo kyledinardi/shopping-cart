@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
 import CartItem from '../components/CartItem.jsx';
+import backendFetch from '../helpers/backendFetch';
 import styles from '../style/Cart.module.css';
 
 function Cart() {
@@ -16,6 +17,13 @@ function Cart() {
       )
 
       .toFixed(2);
+  }
+
+  async function checkout() {
+    await backendFetch('/products/checkout', {
+      method: 'PUT',
+      body: JSON.stringify({ cartContents }),
+    });
   }
 
   return (
@@ -47,7 +55,10 @@ function Cart() {
             </h2>
             <button
               className={`bigButton ${styles.checkoutButton}`}
-              onClick={() => popup.current.showModal()}
+              onClick={() => {
+                checkout();
+                popup.current.showModal();
+              }}
             >
               Checkout
             </button>
